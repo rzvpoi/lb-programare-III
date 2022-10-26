@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Oana
- */
-/** Utilizarea instructiunii if pentru determinarea ariei triunghiului**/
 
 import java.io.*;
 public class ArieTriunghi
