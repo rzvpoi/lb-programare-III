@@ -44,32 +44,39 @@ class TestForma
 	 double rad;
 	 double lg;
 	 double lat;
+	 double intaltime;
 	 String s; 
 	System.out.println("Introduceti tipul formei: ");
 	do
 		{
 		  s = in.readLine();
 		 }  while (s.length() == 0);
-		 switch (s.charAt(0))
-		 {
-			 case 'c':
-				 System.out.println("Raza cercului: ");
-				 rad = Integer.parseInt(in.readLine());
-				 return new Cerc(rad);
-			 case 'p':
-				 System.out.println("Latura patratului: ");
-				 lg = Integer.parseInt(in.readLine());
-				 return new Patrat(lg);
-			 case 'd':
-				 System.out.println("Lungimea si latimea "
-				 + " dreptunghiului pe linii separate: ");
-				 lg = Integer.parseInt(in.readLine());
-				 lat= Integer.parseInt(in.readLine());
-				 return new Dreptunghi(lg, lat);
-			 default:
-				 System.err.println("Tastati c, p sau d: ");
-				 return new Cerc(0);
-		 }
+	switch (s.charAt(0))
+	{
+		case 'c':
+			System.out.println("Raza cercului: ");
+			rad = Integer.parseInt(in.readLine());
+			return new Cerc(rad);
+		case 'p':
+			System.out.println("Latura patratului: ");
+			lg = Integer.parseInt(in.readLine());
+			return new Patrat(lg);
+		case 'd':
+			System.out.println("Lungimea si latimea "
+			+ " dreptunghiului pe linii separate: ");
+			lg = Integer.parseInt(in.readLine());
+			lat= Integer.parseInt(in.readLine());
+			return new Dreptunghi(lg, lat);
+		case 't':
+			System.out.println("Latura triunghiului: ");
+			lat= Integer.parseInt(in.readLine());
+			System.out.println("Inaltimea triunghiului: ");
+			intaltime= Integer.parseInt(in.readLine());
+			return new Triunghi(lat, intaltime, "Triunghi");
+		default:
+			System.err.println("Tastati c, p sau d: ");
+			return new Cerc(0);
+	}
 
  }
 
