@@ -7,12 +7,11 @@ public class Main {
     public static void main(String[] args) {
         String nume="", cnp, faculate, specializare;
         Integer anFacultate;
-        String x ="";
         Scanner sc = new Scanner(System.in);
         String input="";
-        while(x != "x") {
+        while(!input.equals("x")) {
             input ="";
-            System.out.println("!Numarul instantelor create: "+ Persoana.count);
+            System.out.println("\n!Numarul instantelor create: "+ Persoana.count);
             System.out.println("-> To exit the program press x");
             System.out.println("-> To create a person object press p");
             System.out.println("-> To create a student object press s");
@@ -30,7 +29,7 @@ public class Main {
                     cnp = sc.nextLine();
             
                     System.out.println("\n---------------");
-                    System.out.println(Persoana.getInstance(nume, cnp));
+                    Persoana.getInstance(nume, cnp);
                     System.out.println("\n\n");
                     break;
                 case "s":
@@ -50,9 +49,38 @@ public class Main {
                         System.out.println("\n<>!!!<>An facultate must be a number<>!!!<>\n");
                         break;
                     }
-                    System.out.println("\n---------------");
-                    System.out.println(Student.getInstance(nume, cnp, faculate, specializare, anFacultate));
+                    System.out.println("\n---------------"); 
+                    Student stud = Student.getInstance(nume, cnp, faculate, specializare, anFacultate);
                     System.out.println("\n\n");
+                    String inputStud="";
+                    if(stud == null){break;}
+                    while(!inputStud.equals("x")) {
+                        System.out.println("\nStudent energy level is "+ stud.energie );
+                        System.out.println("-> To exit the student activity press x");
+                        System.out.println("-> Invata -> i");
+                        System.out.println("-> Recreere -> r");
+                        System.out.println("-> Testare -> t");
+                        System.out.println("-> Odihna -> o");
+                        System.out.print("Insert option: ");
+                        inputStud ="";
+                        inputStud = sc.nextLine();
+                        switch(inputStud){
+                            case "x":
+                                break;
+                            case "i":
+                                System.out.println(stud.invata(stud));
+                                break;
+                            case "r":
+                                System.out.println(stud.recreere(stud));
+                                break;
+                            case "t":
+                                System.out.println(stud.testare(stud));
+                                break;
+                            case "o":
+                                System.out.println(stud.odihna(stud));
+                                break;
+                        }
+                    }
                     break;
                 default:
                     System.out.println("<>!!!<>Wrong option input<>!!!<>");

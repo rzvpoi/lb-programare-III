@@ -17,26 +17,36 @@ public class Student extends Persoana {
         this.energie = energie;
     }
 
-    public static String getInstance(String nume, String cnp, String facultate, String specializare, Integer anFacultate) {
+    public static Student getInstance(String nume, String cnp, String facultate, String specializare, Integer anFacultate) {
         String err = isNameValid(nume);
-        if (err != null )
-            return "ERROR: "+err;
+        if (err != null ){
+            System.out.println(err);
+            return null;
+        }
         Persoana response = isCnpValid(cnp);
         if (response.zi == null){
             return null;
         }
         err = isDateValid(response.an, response.luna, response.zi);
         if (err != null){
-            return "ERROR: "+err;
+            System.out.println(err);
+            return null;
         }
 
         err = isStudentValid(facultate,specializare);
-        if (err != null )
-            return "ERROR: "+err;
-        
+        if (err != null ){
+            System.out.println(err);
+            return null;
+        }
         Student stud = new Student(nume, cnp, response.sex, response.an, response.luna, response.zi, facultate, specializare, anFacultate, 100);
         count++;
-        return stud.toString();
+        System.out.println(stud.toString());
+        return stud;
+    }
+
+    public static Student getStudent(Student stud)
+    {
+        return stud;
     }
 
     private static String isStudentValid(String facultate, String specializare){
@@ -45,6 +55,40 @@ public class Student extends Persoana {
         if (Pattern.matches("[~!@#$%^&*()_+{}\\[\\]:;,.<>/?-]", specializare) == true  ) {return "Specializare contains special chars!";}
 
         return null;
+    }
+
+    public Student invata(Student stud) {
+        if (stud.energie < 30) {
+            System.out.println("----------Student is too tired for that.----------");
+            return null;
+        }
+
+        stud.energie -= 30;
+        return stud;
+    }
+
+    public Student recreere(Student stud) {
+        if (stud.energie > 80) {
+            System.out.println("----------Student energy level is high enough.----------");
+            return null;
+        }
+
+        stud.energie += 20;
+        return stud;
+    }
+
+    public Student testare(Student stud) {
+        if (stud.energie < 30) {
+            System.out.println("----------Student is too tired for that.----------");
+            return null;
+        }
+        stud.energie -= 50;
+        return stud;
+    }
+
+    public Student odihna(Student stud) {
+        stud.energie = 100;
+        return stud;
     }
 
     public String getFacultate() {
@@ -80,15 +124,23 @@ public class Student extends Persoana {
     }
 
 
+
     @Override
     public String toString() {
         return "{" +
+            " nume='" + getNume() + "'" +
+            ", cnp='" + getCnp() + "'" +
+            ", sex='" + getSex() + "'" +
+            ", an='" + getAn() + "'" +
+            ", luna='" + getLuna() + "'" +
+            ", zi='" + getZi() + "'" +
             " facultate='" + getFacultate() + "'" +
             ", specializare='" + getSpecializare() + "'" +
-            ", an='" + getAn() + "'" +
+            ", anFacultate='" + getAnFacultate() + "'" +
             ", energie='" + getEnergie() + "'" +
             "}";
     }
+   
 
 
     @Override

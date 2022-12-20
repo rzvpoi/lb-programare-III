@@ -1,6 +1,5 @@
 package proiect;
 
-import java.sql.Date;
 import java.time.Year;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -24,23 +23,27 @@ public class Persoana {
         this.zi = zi;
     }
 
-    public static String getInstance(String nume,String cnp) {
+    public static Persoana getInstance(String nume,String cnp) {
     
         String err = isNameValid(nume);
-        if (err != null )
-            return "ERROR: "+err;
+        if (err != null ){
+            System.out.println(err);
+            return null;
+        }
         Persoana response = isCnpValid(cnp);
         if (response.zi == null){
             return null;
         }
         err = isDateValid(response.an, response.luna, response.zi);
         if (err != null){
-            return "ERROR: "+err;
+            System.out.println(err);
+            return null;
         }
     
         Persoana pers = new Persoana(nume, cnp , response.sex, response.an, response.luna, response.zi);
         count++;
-        return pers.toString();
+        System.out.println(pers.toString());
+        return  pers;
     }
 
     protected static String isNameValid(String nume) {
