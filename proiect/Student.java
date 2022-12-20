@@ -10,7 +10,7 @@ public class Student extends Persoana {
     public Integer energie;
 
     private Student(String nume, String cnp, String sex, Integer an, Integer luna, Integer zi, String facultate, String specializare, Integer anFacultate, Integer energie) {
-        super(nume, cnp, sex, anFacultate, luna, zi);
+        super(nume, cnp, sex, an, luna, zi);
         this.facultate = facultate;
         this.specializare = specializare;
         this.anFacultate = anFacultate;
